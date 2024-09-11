@@ -14,9 +14,8 @@ class MyCog(commands.Cog):
     @tasks.loop(minutes=5.0)
     async def change_status(self):
         self.ip = subprocess.run(["curl", "-s", "ifcfg.me"], capture_output=True).stdout.decode('UTF-8')
-        print(self.ip)
         await self.bot.change_presence(status=discord.Status.online, activity=discord.Game(name=f"Minecraft @ IP: \"{self.ip}\" and Port: \"19132\""))
-    
+
     @commands.Cog.listener()
     async def on_ready(self):
         self.change_status.start()
