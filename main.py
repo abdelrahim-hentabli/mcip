@@ -3,6 +3,9 @@ import discord
 from discord.ext import tasks, commands
 import subprocess
 import re
+import os
+
+DISCORD_API_TOKEN = os.getenv('DISCORD_API_TOKEN')
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents, help_command=None, status=discord.Status.idle)
@@ -34,6 +37,6 @@ class MyCog(commands.Cog):
 
 async def main():
     await bot.add_cog(MyCog(bot))
-    await bot.start('MTI4MzIwNDA2MTgzNTAzODc3MQ.Gayyyo.BIL5IR-Ig67MkoIcZvCoM7GTLiRyLxwhhHl_xU')
+    await bot.start(DISCORD_API_TOKEN)
 
 asyncio.run(main())
